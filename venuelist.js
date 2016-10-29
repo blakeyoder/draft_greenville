@@ -1,6 +1,14 @@
 let rp = require('request-promise');
 let cheerio = require('cheerio');
 
+/** 
+ usage: 
+
+ var vl = require('./venuelist');
+ vl.getVenueDetails('tct', console.log)
+ vl.getVenues({}, console.log)
+ */
+
 let VENUES = {
   "tct": {
     "name": "The Community Tap",
