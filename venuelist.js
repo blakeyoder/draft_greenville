@@ -1,13 +1,14 @@
 let rp = require('request-promise');
 let cheerio = require('cheerio');
 
-/** 
- usage: 
+/**
+ usage:
 
  var vl = require('./venuelist');
  vl.getVenueDetails('tct', console.log)
  vl.getVenues({}, console.log)
  */
+
 
 let VENUES = {
   "tct": {
@@ -32,7 +33,7 @@ let VENUES = {
 };
 
 
-function getVenues(options, callback){
+let getVenues =  function(options, callback){
   let p = new Promise(function(resolve=callback, reject){
 
     let res = Object.keys(VENUES).map((key) => ({
@@ -48,7 +49,7 @@ function getVenues(options, callback){
 }
 
 
-function getVenueDetails(venueID, callback){
+let getVenueDetails = function(venueID, callback){
   let v = VENUES[venueID];
   let options = {
     uri: v.uri,
@@ -56,7 +57,7 @@ function getVenueDetails(venueID, callback){
       return cheerio.load(body);
     }
   };
-  
+
   rp(options)
     .then(function($){
       callback(v.parse_beer_list($));
