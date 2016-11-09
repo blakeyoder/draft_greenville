@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cheerio = require('cheerio');
 const request = require('request');
-const venue = require ('venuelist');
+const venue = require ('./venuelist');
 
 app.set('port', (process.env.API_PORT || 3001));
 
@@ -17,7 +17,7 @@ app.get('/api/venue_details', (req, res) => {
     return;
   }
 
-  venue.getVenueDetails(param, console.log);
+  venue.getVenueDetails(param, function(data){ res.json(data); } );
   
 });
 
